@@ -7,6 +7,7 @@ Created on Fri Apr  7 10:58:35 2023
 # Importing modules
 import nltk
 import streamlit as st
+st.set_theme('light')
 import re
 import preprocessor2,helper2
 import pandas as pd
