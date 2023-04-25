@@ -13,6 +13,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+nltk.download('vader_lexicon')
 
 #Displaying the entire data frame
 
