@@ -14,6 +14,8 @@ from collections import Counter
 from nltk.corpus import stopwords
 stop_words = stopwords.words('english')
 
+import nltk
+nltk.download('vader_lexicon'
 # Object
 extract = URLExtract()
 
