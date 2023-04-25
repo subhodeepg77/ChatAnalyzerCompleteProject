@@ -14,6 +14,7 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 nltk.download('vader_lexicon')
+nltk.download('stopwords')
 
 #Displaying the entire data frame
 
