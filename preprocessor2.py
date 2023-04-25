@@ -11,6 +11,7 @@ import pandas as pd
 import nltk
 nltk.download('averaged_perceptron_tagger')
 nltk.download('vader_lexicon')
+nltk.download('stopwords')
 
 from nltk.sentiment import SentimentIntensityAnalyzer
 from tqdm.notebook import tqdm
