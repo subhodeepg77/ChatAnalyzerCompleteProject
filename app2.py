@@ -16,6 +16,11 @@ import matplotlib.pyplot as plt
 nltk.download('vader_lexicon')
 nltk.download('stopwords')
 
+import ipywidgets as widgets
+from IPython.display import display
+from IPython.display import clear_output
+
+
 #Displaying the entire data frame
 
 # App title
