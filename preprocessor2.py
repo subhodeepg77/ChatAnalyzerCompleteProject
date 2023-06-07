@@ -13,7 +13,7 @@ nltk.download('averaged_perceptron_tagger')
 nltk.download('vader_lexicon')
 from nltk.sentiment import SentimentIntensityAnalyzer
 from tqdm.notebook import tqdm
-
+nltk.download('stopwords')
 sia = SentimentIntensityAnalyzer()
 
 # To convert text into data frame in desired form
