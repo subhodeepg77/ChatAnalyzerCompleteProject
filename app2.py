@@ -582,7 +582,7 @@ if uploaded_file is not None:
                 #-----------------------
 
 
-
+data = bytes_data.decode("utf-8")
 # Get the average positive, neutral, negative, and compound scores from the preprocessing function
 _, avg_compound, avg_positive, avg_neutral, avg_negative = preprocessor2.preprocess2(data)
 
