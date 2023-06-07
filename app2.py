@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from wordcloud import WordCloud
 stop_words_file = 'stop_hinglish.txt'
-
+nltk.download('stopwords')
 import nltk
 nltk.download('vader_lexicon')
 #Displaying the entire data frame
