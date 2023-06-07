@@ -452,6 +452,8 @@ if uploaded_file is not None:
                 # Displaying
                 fig, ax = plt.subplots()
                 ax.bar(x.index, x.values, color='green')
+                ax.set_xlabel('User(Positive)')
+                ax.set_ylabel('Word_Count)')
                 plt.xticks(rotation='vertical')
                 st.pyplot(fig)
             with col2:
@@ -461,6 +463,8 @@ if uploaded_file is not None:
                 # Displaying
                 fig, ax = plt.subplots()
                 ax.bar(z.index, z.values, color='grey')
+                ax.set_xlabel('User(Neutral)')
+                ax.set_ylabel('Word_Count)')
                 plt.xticks(rotation='vertical')
                 st.pyplot(fig)
             with col3:
@@ -470,6 +474,8 @@ if uploaded_file is not None:
                 # Displaying
                 fig, ax = plt.subplots()
                 ax.bar(y.index, y.values, color='red')
+                ax.set_xlabel('User(Negative)')
+                ax.set_ylabel('Word_Count)')
                 plt.xticks(rotation='vertical')
                 st.pyplot(fig)
 
@@ -532,6 +538,8 @@ if uploaded_file is not None:
                 st.markdown("<h3 style='text-align: center; color: black;'>Positive Words</h3>",unsafe_allow_html=True)
                 fig, ax = plt.subplots()
                 ax.barh(most_common_df[0], most_common_df[1],color='green')
+                ax.set_xlabel('Frequency')
+                ax.set_ylabel('Words (Positive)')
                 plt.xticks(rotation='vertical')
                 st.pyplot(fig)
             except:
@@ -546,6 +554,8 @@ if uploaded_file is not None:
                 st.markdown("<h3 style='text-align: center; color: black;'>Neutral Words</h3>",unsafe_allow_html=True)
                 fig, ax = plt.subplots()
                 ax.barh(most_common_df[0], most_common_df[1],color='grey')
+                ax.set_xlabel('Frequency')
+                ax.set_ylabel('Words (Neutral)')
                 plt.xticks(rotation='vertical')
                 st.pyplot(fig)
             except:
@@ -560,6 +570,8 @@ if uploaded_file is not None:
                 st.markdown("<h3 style='text-align: center; color: black;'>Negative Words</h3>",unsafe_allow_html=True)
                 fig, ax = plt.subplots()
                 ax.barh(most_common_df[0], most_common_df[1], color='red')
+                ax.set_xlabel('Frequency')
+                ax.set_ylabel('Words (Negative)')
                 plt.xticks(rotation='vertical')
                 st.pyplot(fig)
             except:
