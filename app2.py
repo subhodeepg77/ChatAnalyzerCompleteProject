@@ -581,7 +581,7 @@ if uploaded_file is not None:
                     st.markdown(f"<h2 style='text-align: center;'>Average Negative Score: {avg_negative:.2f}</h2>", unsafe_allow_html=True)
                 #-----------------------
 
-
+bytes_data = uploaded_file.getvalue()
 data = bytes_data.decode("utf-8")
 # Get the average positive, neutral, negative, and compound scores from the preprocessing function
 _, avg_compound, avg_positive, avg_neutral, avg_negative = preprocessor2.preprocess2(data)
