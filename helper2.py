@@ -17,7 +17,7 @@ import numpy as np
 from PIL import Image
 stop_words_file = 'stop_hinglish.txt' 
 whatsapp_logo = np.array(Image.open("whatsapp_logo.png"))
-
+nltk.download('stopwords')
 import nltk
 
 nltk.download('vader_lexicon')
