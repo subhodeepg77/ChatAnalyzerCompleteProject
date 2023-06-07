@@ -581,20 +581,19 @@ if uploaded_file is not None:
                     st.markdown(f"<h2 style='text-align: center;'>Average Negative Score: {avg_negative:.2f}</h2>", unsafe_allow_html=True)
                 #-----------------------
 
-bytes_data = uploaded_file.getvalue()
-data = bytes_data.decode("utf-8")
+
 # Get the average positive, neutral, negative, and compound scores from the preprocessing function
-_, avg_compound, avg_positive, avg_neutral, avg_negative = preprocessor2.preprocess2(data)
+        _, avg_compound, avg_positive, avg_neutral, avg_negative = preprocessor2.preprocess2(data)
 
 # Create labels and values for the pie chart
-labels = ['Positive', 'Neutral', 'Negative', 'Compound']
-values = [avg_positive, avg_neutral, avg_negative, avg_compound]
+        labels = ['Positive', 'Neutral', 'Negative', 'Compound']
+        values = [avg_positive, avg_neutral, avg_negative, avg_compound]
 
 # Create the pie chart
-fig, ax = plt.subplots()
-ax.pie(values, labels=labels, autopct='%1.1f%%', startangle=90)
-ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle
+        fig, ax = plt.subplots()
+        ax.pie(values, labels=labels, autopct='%1.1f%%', startangle=90)
+        ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle
 
 # Display the pie chart using Streamlit
-st.markdown("<h3 style='text-align: center; color: black;'>Sentiment Distribution</h3>", unsafe_allow_html=True)
-st.pyplot(fig)
+        st.markdown("<h3 style='text-align: center; color: black;'>Sentiment Distribution</h3>", unsafe_allow_html=True)
+        st.pyplot(fig)
