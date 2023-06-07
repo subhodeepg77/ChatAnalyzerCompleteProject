@@ -17,6 +17,8 @@ from PIL import Image
 from wordcloud import WordCloud
 stop_words_file = 'stop_hinglish.txt'
 
+import nltk
+nltk.download('vader_lexicon')
 #Displaying the entire data frame
 
 # App title
