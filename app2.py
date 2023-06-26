@@ -117,7 +117,11 @@ if uploaded_file is not None:
         col1, col2 = st.columns(2)
     
         with col1:
-            ax.bar(x.index, x.values,color='teal')
+            bars = ax.bar(x.index, x.values,color='teal')
+            for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
             plt.xticks(rotation='vertical')
             ax.set_xlabel('User')  # Add x label
             ax.set_ylabel('Message Count')  # Add y label
@@ -162,7 +166,11 @@ if uploaded_file is not None:
             st.markdown("<h3 style='text-align: center; color: black;'>Most Busy Days</h3>",unsafe_allow_html=True)
             busy_day = helper2.week_activity_map1(selected_user,df)
             fig,ax = plt.subplots()
-            ax.bar(busy_day.index,busy_day.values, color='pink')
+            bars = ax.bar(busy_day.index,busy_day.values, color='pink')
+            for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
             plt.xticks(rotation='vertical')
             ax.set_xlabel('Days of the Week')  # Add a label to the x-axis
 
@@ -173,7 +181,11 @@ if uploaded_file is not None:
             st.markdown("<h3 style='text-align: center; color: black;'>Most Busy Months</h3>",unsafe_allow_html=True)
             busy_month = helper2.month_activity_map1(selected_user, df)
             fig, ax = plt.subplots()
-            ax.bar(busy_month.index, busy_month.values, color='orange')
+            bars = ax.bar(busy_month.index, busy_month.values, color='orange')
+            for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
             plt.xticks(rotation='vertical')
             ax.set_xlabel('Months')  # Add a label to the x-axis
             ax.set_ylabel('Frequency')  # Add a label to the y-axis
@@ -188,7 +200,11 @@ if uploaded_file is not None:
 
             fig, ax = plt.subplots()
                 
-            ax.barh(most_common_df[0],most_common_df[1], color='cyan', height=0.5)
+            bars = ax.barh(most_common_df[0],most_common_df[1], color='cyan', height=0.5)
+            for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
             plt.xticks(rotation='vertical')
             
             ax.set_xlabel('Frequency')
@@ -235,7 +251,11 @@ if uploaded_file is not None:
             busy_month = helper2.month_activity_map(selected_user, data,1)
             
             fig, ax = plt.subplots()
-            ax.bar(busy_month.index, busy_month.values, color='green')
+            bars = ax.bar(busy_month.index, busy_month.values, color='green')
+            for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
             ax.set_xlabel('Month')
             ax.set_ylabel('Activity Count (Positive)')
             plt.xticks(rotation='vertical')
@@ -246,7 +266,11 @@ if uploaded_file is not None:
             busy_month = helper2.month_activity_map(selected_user, data, 0)
             
             fig, ax = plt.subplots()
-            ax.bar(busy_month.index, busy_month.values, color='grey')
+            bars = ax.bar(busy_month.index, busy_month.values, color='grey')
+            for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
             ax.set_xlabel('Month')
             ax.set_ylabel('Activity Count (Neutral)')
             plt.xticks(rotation='vertical')
@@ -257,7 +281,11 @@ if uploaded_file is not None:
             busy_month = helper2.month_activity_map(selected_user, data, -1)
             
             fig, ax = plt.subplots()
-            ax.bar(busy_month.index, busy_month.values, color='red')
+            bars = ax.bar(busy_month.index, busy_month.values, color='red')
+            for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
             ax.set_xlabel('Month')
             ax.set_ylabel('Activity Count (Negative)')
             plt.xticks(rotation='vertical')
@@ -271,7 +299,11 @@ if uploaded_file is not None:
             busy_day = helper2.week_activity_map(selected_user, data,1)
             
             fig, ax = plt.subplots()
-            ax.bar(busy_day.index, busy_day.values, color='green')
+            bars = ax.bar(busy_day.index, busy_day.values, color='green')
+            for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
             ax.set_xlabel('Day of Week')
             ax.set_ylabel('Activity Count (Positive)')
             plt.xticks(rotation='vertical')
@@ -282,7 +314,11 @@ if uploaded_file is not None:
             busy_day = helper2.week_activity_map(selected_user, data, 0)
             
             fig, ax = plt.subplots()
-            ax.bar(busy_day.index, busy_day.values, color='grey')
+            bars = ax.bar(busy_day.index, busy_day.values, color='grey')
+            for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
             ax.set_xlabel('Day of Week')
             ax.set_ylabel('Activity Count (Neutral)')
             plt.xticks(rotation='vertical')
@@ -293,7 +329,11 @@ if uploaded_file is not None:
             busy_day = helper2.week_activity_map(selected_user, data, -1)
             
             fig, ax = plt.subplots()
-            ax.bar(busy_day.index, busy_day.values, color='red')
+            bars = ax.bar(busy_day.index, busy_day.values, color='red')
+            for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
             ax.set_xlabel('Day of Week')
             ax.set_ylabel('Activity Count (Negative)')
             plt.xticks(rotation='vertical')
@@ -451,7 +491,11 @@ if uploaded_file is not None:
                 
                 # Displaying
                 fig, ax = plt.subplots()
-                ax.bar(x.index, x.values, color='green')
+                bars = ax.bar(x.index, x.values, color='green')
+                for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
                 ax.set_xlabel('User(Positive)')
                 ax.set_ylabel('Word_Count)')
                 plt.xticks(rotation='vertical')
@@ -462,7 +506,11 @@ if uploaded_file is not None:
                 
                 # Displaying
                 fig, ax = plt.subplots()
-                ax.bar(z.index, z.values, color='grey')
+                bars = ax.bar(z.index, z.values, color='grey')
+                for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
                 ax.set_xlabel('User(Neutral)')
                 ax.set_ylabel('Word_Count)')
                 plt.xticks(rotation='vertical')
@@ -473,7 +521,11 @@ if uploaded_file is not None:
                 
                 # Displaying
                 fig, ax = plt.subplots()
-                ax.bar(y.index, y.values, color='red')
+                bars = ax.bar(y.index, y.values, color='red')
+                for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
                 ax.set_xlabel('User(Negative)')
                 ax.set_ylabel('Word_Count)')
                 plt.xticks(rotation='vertical')
@@ -537,7 +589,11 @@ if uploaded_file is not None:
                 # heading
                 st.markdown("<h3 style='text-align: center; color: black;'>Positive Words</h3>",unsafe_allow_html=True)
                 fig, ax = plt.subplots()
-                ax.barh(most_common_df[0], most_common_df[1],color='green')
+                bars =ax.barh(most_common_df[0], most_common_df[1],color='green')
+                for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
                 ax.set_xlabel('Frequency')
                 ax.set_ylabel('Words (Positive)')
                 plt.xticks(rotation='vertical')
@@ -553,7 +609,11 @@ if uploaded_file is not None:
                 # heading
                 st.markdown("<h3 style='text-align: center; color: black;'>Neutral Words</h3>",unsafe_allow_html=True)
                 fig, ax = plt.subplots()
-                ax.barh(most_common_df[0], most_common_df[1],color='grey')
+                bars = ax.barh(most_common_df[0], most_common_df[1],color='grey')
+                for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
                 ax.set_xlabel('Frequency')
                 ax.set_ylabel('Words (Neutral)')
                 plt.xticks(rotation='vertical')
@@ -569,7 +629,11 @@ if uploaded_file is not None:
                 # heading
                 st.markdown("<h3 style='text-align: center; color: black;'>Negative Words</h3>",unsafe_allow_html=True)
                 fig, ax = plt.subplots()
-                ax.barh(most_common_df[0], most_common_df[1], color='red')
+                bars = ax.barh(most_common_df[0], most_common_df[1], color='red')
+                for bar in bars:
+                    height = bar.get_height()
+                    ax.text(bar.get_x() + bar.get_width() / 2, height,
+            f'{height}', ha='center', va='bottom')
                 ax.set_xlabel('Frequency')
                 ax.set_ylabel('Words (Negative)')
                 plt.xticks(rotation='vertical')
