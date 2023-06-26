@@ -200,11 +200,7 @@ if uploaded_file is not None:
 
             fig, ax = plt.subplots()
                 
-            bars = ax.barh(most_common_df[0],most_common_df[1], color='cyan', height=0.5)
-            for bar in bars:
-                    height = bar.get_height()
-                    ax.text(bar.get_x() + bar.get_width() / 2, height,
-            f'{height}', ha='center', va='bottom')
+            ax.barh(most_common_df[0],most_common_df[1], color='cyan', height=0.5)
             plt.xticks(rotation='vertical')
             
             ax.set_xlabel('Frequency')
@@ -589,11 +585,7 @@ if uploaded_file is not None:
                 # heading
                 st.markdown("<h3 style='text-align: center; color: black;'>Positive Words</h3>",unsafe_allow_html=True)
                 fig, ax = plt.subplots()
-                bars =ax.barh(most_common_df[0], most_common_df[1],color='green')
-                for bar in bars:
-                    height = bar.get_height()
-                    ax.text(bar.get_x() + bar.get_width() / 2, height,
-            f'{height}', ha='center', va='bottom')
+                ax.barh(most_common_df[0], most_common_df[1],color='green')
                 ax.set_xlabel('Frequency')
                 ax.set_ylabel('Words (Positive)')
                 plt.xticks(rotation='vertical')
@@ -609,11 +601,7 @@ if uploaded_file is not None:
                 # heading
                 st.markdown("<h3 style='text-align: center; color: black;'>Neutral Words</h3>",unsafe_allow_html=True)
                 fig, ax = plt.subplots()
-                bars = ax.barh(most_common_df[0], most_common_df[1],color='grey')
-                for bar in bars:
-                    height = bar.get_height()
-                    ax.text(bar.get_x() + bar.get_width() / 2, height,
-            f'{height}', ha='center', va='bottom')
+                ax.barh(most_common_df[0], most_common_df[1],color='grey')
                 ax.set_xlabel('Frequency')
                 ax.set_ylabel('Words (Neutral)')
                 plt.xticks(rotation='vertical')
@@ -629,11 +617,7 @@ if uploaded_file is not None:
                 # heading
                 st.markdown("<h3 style='text-align: center; color: black;'>Negative Words</h3>",unsafe_allow_html=True)
                 fig, ax = plt.subplots()
-                bars = ax.barh(most_common_df[0], most_common_df[1], color='red')
-                for bar in bars:
-                    height = bar.get_height()
-                    ax.text(bar.get_x() + bar.get_width() / 2, height,
-            f'{height}', ha='center', va='bottom')
+                ax.barh(most_common_df[0], most_common_df[1], color='red')
                 ax.set_xlabel('Frequency')
                 ax.set_ylabel('Words (Negative)')
                 plt.xticks(rotation='vertical')
