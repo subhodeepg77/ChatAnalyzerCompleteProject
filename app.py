@@ -4,8 +4,8 @@ Created on Fri Apr  7 10:58:35 2023
 
 @author: user
 """
-import preprocessor2
-import helper2
+import preprocessor
+import helper
 
 # Importing modules
 import nltk
