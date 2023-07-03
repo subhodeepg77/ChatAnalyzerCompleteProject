@@ -251,3 +251,4 @@ def most_common_words(selected_user,df,k):
     # Creating data frame of most common 20 entries
     most_common_df = pd.DataFrame(Counter(words).most_common(20))
     return most_common_df
+
