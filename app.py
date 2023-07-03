@@ -11,7 +11,7 @@ import helper2
 import nltk
 import streamlit as st
 import re
-import preprocessor2,helper2
+import preprocessor,helper
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -43,8 +43,8 @@ if uploaded_file is not None:
     bytes_data = uploaded_file.getvalue()
     d = bytes_data.decode("utf-8")
     # Perform preprocessing
-    data = preprocessor2.preprocess(d)
-    df = preprocessor2.preprocess(d)
+    data = preprocessor.preprocess(d)
+    df = preprocessor.preprocess(d)
     
     st. markdown("<h1 style='text-align: center; color: black;'></h1>", unsafe_allow_html=True)
     
@@ -95,7 +95,7 @@ if uploaded_file is not None:
         
 #-------------------------------------------------
 #Busy users
-        num_messages,words,num_media_messages,num_links=helper2.fetch_stats(selected_user,df)
+        num_messages,words,num_media_messages,num_links=helper.fetch_stats(selected_user,df)
         col1,col2,col3,col4 = st.columns(4)
         with col1:
             st.header("Total Messages")
@@ -112,7 +112,7 @@ if uploaded_file is not None:
             st.title(num_links)
             
         st.markdown("<h3 style='text-align: center; color: black;'>Most Busy Users",unsafe_allow_html=True)
-        x,new_df = helper2.most_busy_users(df)
+        x,new_df = helper.most_busy_users(df)
         fig, ax = plt.subplots()
         col1, col2 = st.columns(2)
     
@@ -138,7 +138,7 @@ if uploaded_file is not None:
         #timeline
         with col1:
             st.markdown("<h3 style='text-align: center; color: black;'>Monthly Timeline",unsafe_allow_html=True)
-            timelinee = helper2.monthly_timelinee(selected_user, df)
+            timelinee = helper.monthly_timelinee(selected_user, df)
             fig, ax = plt.subplots()
             ax.plot(timelinee['time'], timelinee['message'], color='navy')
             ax.set_xlabel('Month')  # Add x label
@@ -150,7 +150,7 @@ if uploaded_file is not None:
         #daily_timeline
         with col2:
             st.markdown("<h3 style='text-align: center; color: black;'>Daily Timeline",unsafe_allow_html=True)
-            daily_timelinee = helper2.daily_timelinee(selected_user, df)
+            daily_timelinee = helper.daily_timelinee(selected_user, df)
             fig, ax = plt.subplots()
             ax.plot(daily_timelinee['only_date'], daily_timelinee['message'],color='magenta' )
             ax.set_xlabel('Date')  # Add x label
@@ -164,7 +164,7 @@ if uploaded_file is not None:
 
         with col1:
             st.markdown("<h3 style='text-align: center; color: black;'>Most Busy Days</h3>",unsafe_allow_html=True)
-            busy_day = helper2.week_activity_map1(selected_user,df)
+            busy_day = helper.week_activity_map1(selected_user,df)
             fig,ax = plt.subplots()
             bars = ax.bar(busy_day.index,busy_day.values, color='pink')
             for bar in bars:
@@ -179,7 +179,7 @@ if uploaded_file is not None:
 
         with col2:
             st.markdown("<h3 style='text-align: center; color: black;'>Most Busy Months</h3>",unsafe_allow_html=True)
-            busy_month = helper2.month_activity_map1(selected_user, df)
+            busy_month = helper.month_activity_map1(selected_user, df)
             fig, ax = plt.subplots()
             bars = ax.bar(busy_month.index, busy_month.values, color='orange')
             for bar in bars:
@@ -196,7 +196,7 @@ if uploaded_file is not None:
         
         with col1:
             #Most Common Words
-            most_common_df = helper2.most_common_words1(selected_user,df,stop_words_file)
+            most_common_df = helper.most_common_words1(selected_user,df,stop_words_file)
 
             fig, ax = plt.subplots()
                 
@@ -212,7 +212,7 @@ if uploaded_file is not None:
         with col2:
             # Wordcloud
             st.markdown("<h3 style='text-align: center; color: black;'>Wordcloud</h3>", unsafe_allow_html=True)
-            df_wc = helper2.create_wordcloud1(selected_user, df,stop_words_file)
+            df_wc = helper.create_wordcloud1(selected_user, df,stop_words_file)
             fig, ax = plt.subplots(figsize=(8, 8))  # Set the figure size to match the WhatsApp logo dimensions
             ax.imshow(df_wc, interpolation='bilinear')
             ax.axis('off')
@@ -222,7 +222,7 @@ if uploaded_file is not None:
         #activity map
 
         st.markdown("<h3 style='text-align: center; color: black;'>Weekly Activity Heatmap</h3>",unsafe_allow_html=True)
-        user_heatmap1 = helper2.activity_heatmap1(selected_user,df)
+        user_heatmap1 = helper.activity_heatmap1(selected_user,df)
         fig,ax = plt.subplots()
         ax.set_xlabel("Weekday")
         ax.set_ylabel("Hour")
@@ -244,7 +244,7 @@ if uploaded_file is not None:
         with col1:
             st.markdown("<h3 style='text-align: center; color: black;'>Monthly Activity map(Positive)</h3>",unsafe_allow_html=True)
             
-            busy_month = helper2.month_activity_map(selected_user, data,1)
+            busy_month = helper.month_activity_map(selected_user, data,1)
             
             fig, ax = plt.subplots()
             bars = ax.bar(busy_month.index, busy_month.values, color='green')
@@ -259,7 +259,7 @@ if uploaded_file is not None:
         with col2:
             st.markdown("<h3 style='text-align: center; color: black;'>Monthly Activity map(Neutral)</h3>",unsafe_allow_html=True)
             
-            busy_month = helper2.month_activity_map(selected_user, data, 0)
+            busy_month = helper.month_activity_map(selected_user, data, 0)
             
             fig, ax = plt.subplots()
             bars = ax.bar(busy_month.index, busy_month.values, color='grey')
@@ -274,7 +274,7 @@ if uploaded_file is not None:
         with col3:
             st.markdown("<h3 style='text-align: center; color: black;'>Monthly Activity map(Negative)</h3>",unsafe_allow_html=True)
             
-            busy_month = helper2.month_activity_map(selected_user, data, -1)
+            busy_month = helper.month_activity_map(selected_user, data, -1)
             
             fig, ax = plt.subplots()
             bars = ax.bar(busy_month.index, busy_month.values, color='red')
@@ -292,7 +292,7 @@ if uploaded_file is not None:
         with col1:
             st.markdown("<h3 style='text-align: center; color: black;'>Daily Activity map(Positive)</h3>",unsafe_allow_html=True)
             
-            busy_day = helper2.week_activity_map(selected_user, data,1)
+            busy_day = helper.week_activity_map(selected_user, data,1)
             
             fig, ax = plt.subplots()
             bars = ax.bar(busy_day.index, busy_day.values, color='green')
@@ -307,7 +307,7 @@ if uploaded_file is not None:
         with col2:
             st.markdown("<h3 style='text-align: center; color: black;'>Daily Activity map(Neutral)</h3>",unsafe_allow_html=True)
             
-            busy_day = helper2.week_activity_map(selected_user, data, 0)
+            busy_day = helper.week_activity_map(selected_user, data, 0)
             
             fig, ax = plt.subplots()
             bars = ax.bar(busy_day.index, busy_day.values, color='grey')
@@ -322,7 +322,7 @@ if uploaded_file is not None:
         with col3:
             st.markdown("<h3 style='text-align: center; color: black;'>Daily Activity map(Negative)</h3>",unsafe_allow_html=True)
             
-            busy_day = helper2.week_activity_map(selected_user, data, -1)
+            busy_day = helper.week_activity_map(selected_user, data, -1)
             
             fig, ax = plt.subplots()
             bars = ax.bar(busy_day.index, busy_day.values, color='red')
@@ -341,7 +341,7 @@ if uploaded_file is not None:
             try:
                 st.markdown("<h3 style='text-align: center; color: black;'>Weekly Activity Map(Positive)</h3>",unsafe_allow_html=True)
                 
-                user_heatmap = helper2.activity_heatmap(selected_user, data, 1)
+                user_heatmap = helper.activity_heatmap(selected_user, data, 1)
                 
                 fig, ax = plt.subplots()
                 ax = sns.heatmap(user_heatmap)
@@ -354,7 +354,7 @@ if uploaded_file is not None:
             try:
                 st.markdown("<h3 style='text-align: center; color: black;'>Weekly Activity Map(Neutral)</h3>",unsafe_allow_html=True)
                 
-                user_heatmap = helper2.activity_heatmap(selected_user, data, 0)
+                user_heatmap = helper.activity_heatmap(selected_user, data, 0)
                 
                 fig, ax = plt.subplots()
                 ax = sns.heatmap(user_heatmap)
@@ -367,7 +367,7 @@ if uploaded_file is not None:
             try:
                 st.markdown("<h3 style='text-align: center; color: black;'>Weekly Activity Map(Negative)</h3>",unsafe_allow_html=True)
                 
-                user_heatmap = helper2.activity_heatmap(selected_user, data, -1)
+                user_heatmap = helper.activity_heatmap(selected_user, data, -1)
                 
                 fig, ax = plt.subplots()
                 ax = sns.heatmap(user_heatmap)
@@ -382,7 +382,7 @@ if uploaded_file is not None:
         with col1:
             st.markdown("<h3 style='text-align: center; color: black;'>Daily Timeline(Positive)</h3>",unsafe_allow_html=True)
             
-            daily_timeline = helper2.daily_timeline(selected_user, data, 1)
+            daily_timeline = helper.daily_timeline(selected_user, data, 1)
             
             fig, ax = plt.subplots()
             ax.plot(daily_timeline['only_date'], daily_timeline['message'], color='green')
@@ -393,7 +393,7 @@ if uploaded_file is not None:
         with col2:
             st.markdown("<h3 style='text-align: center; color: black;'>Daily Timeline(Neutral)</h3>",unsafe_allow_html=True)
             
-            daily_timeline = helper2.daily_timeline(selected_user, data, 0)
+            daily_timeline = helper.daily_timeline(selected_user, data, 0)
             
             fig, ax = plt.subplots()
             ax.plot(daily_timeline['only_date'], daily_timeline['message'], color='grey')
@@ -404,7 +404,7 @@ if uploaded_file is not None:
         with col3:
             st.markdown("<h3 style='text-align: center; color: black;'>Daily Timeline(Negative)</h3>",unsafe_allow_html=True)
             
-            daily_timeline = helper2.daily_timeline(selected_user, data, -1)
+            daily_timeline = helper.daily_timeline(selected_user, data, -1)
             
             fig, ax = plt.subplots()
             ax.plot(daily_timeline['only_date'], daily_timeline['message'], color='red')
@@ -418,7 +418,7 @@ if uploaded_file is not None:
         with col1:
             st.markdown("<h3 style='text-align: center; color: black;'>Monthly Timeline(Positive)</h3>",unsafe_allow_html=True)
             
-            timeline = helper2.monthly_timeline(selected_user, data,1)
+            timeline = helper.monthly_timeline(selected_user, data,1)
             
             fig, ax = plt.subplots()
             ax.plot(timeline['time'], timeline['message'], color='green')
@@ -429,7 +429,7 @@ if uploaded_file is not None:
         with col2:
             st.markdown("<h3 style='text-align: center; color: black;'>Monthly Timeline(Neutral)</h3>",unsafe_allow_html=True)
             
-            timeline = helper2.monthly_timeline(selected_user, data,0)
+            timeline = helper.monthly_timeline(selected_user, data,0)
             
             fig, ax = plt.subplots()
             ax.plot(timeline['time'], timeline['message'], color='grey')
@@ -440,7 +440,7 @@ if uploaded_file is not None:
         with col3:
             st.markdown("<h3 style='text-align: center; color: black;'>Monthly Timeline(Negative)</h3>",unsafe_allow_html=True)
             
-            timeline = helper2.monthly_timeline(selected_user, data,-1)
+            timeline = helper.monthly_timeline(selected_user, data,-1)
             
             fig, ax = plt.subplots()
             ax.plot(timeline['time'], timeline['message'], color='red')
@@ -454,19 +454,19 @@ if uploaded_file is not None:
             col1,col2,col3 = st.columns(3)
             with col1:
                 st.markdown("<h3 style='text-align: center; color: black;'>Most Positive Contribution</h3>",unsafe_allow_html=True)
-                x = helper2.percentage(data, 1)
+                x = helper.percentage(data, 1)
                 
                 # Displaying
                 st.dataframe(x)
             with col2:
                 st.markdown("<h3 style='text-align: center; color: black;'>Most Neutral Contribution</h3>",unsafe_allow_html=True)
-                y = helper2.percentage(data, 0)
+                y = helper.percentage(data, 0)
                 
                 # Displaying
                 st.dataframe(y)
             with col3:
                 st.markdown("<h3 style='text-align: center; color: black;'>Most Negative Contribution</h3>",unsafe_allow_html=True)
-                z = helper2.percentage(data, -1)
+                z = helper.percentage(data, -1)
                 
                 # Displaying
                 st.dataframe(z)
@@ -535,7 +535,7 @@ if uploaded_file is not None:
                 st.markdown("<h3 style='text-align: center; color: black;'>Positive WordCloud</h3>",unsafe_allow_html=True)
                 
                 # Creating wordcloud of positive words
-                df_wc = helper2.create_wordcloud(selected_user, data,1)
+                df_wc = helper.create_wordcloud(selected_user, data,1)
                 #fig, ax = plt.subplots()
                 #ax.imshow(df_wc)
                 #st.pyplot(fig)
@@ -552,7 +552,7 @@ if uploaded_file is not None:
                 st.markdown("<h3 style='text-align: center; color: black;'>Neutral WordCloud</h3>",unsafe_allow_html=True)
                 
                 # Creating wordcloud of neutral words
-                df_wc = helper2.create_wordcloud(selected_user, data,0)
+                df_wc = helper.create_wordcloud(selected_user, data,0)
                 fig, ax = plt.subplots()
                 ax.imshow(df_wc, interpolation='bilinear')
                 ax.axis('off')
@@ -566,7 +566,7 @@ if uploaded_file is not None:
                 st.markdown("<h3 style='text-align: center; color: black;'>Negative WordCloud</h3>",unsafe_allow_html=True)
                 
                 # Creating wordcloud of negative words
-                df_wc = helper2.create_wordcloud(selected_user, data,-1)
+                df_wc = helper.create_wordcloud(selected_user, data,-1)
                 fig, ax = plt.subplots()
                 ax.imshow(df_wc, interpolation='bilinear')
                 ax.axis('off')
@@ -580,7 +580,7 @@ if uploaded_file is not None:
         with col1:
             try:
                 # Data frame of most common positive words.
-                most_common_df = helper2.most_common_words(selected_user, data,1)
+                most_common_df = helper.most_common_words(selected_user, data,1)
                 
                 # heading
                 st.markdown("<h3 style='text-align: center; color: black;'>Positive Words</h3>",unsafe_allow_html=True)
@@ -596,7 +596,7 @@ if uploaded_file is not None:
         with col2:
             try:
                 # Data frame of most common neutral words.
-                most_common_df = helper2.most_common_words(selected_user, data,0)
+                most_common_df = helper.most_common_words(selected_user, data,0)
                 
                 # heading
                 st.markdown("<h3 style='text-align: center; color: black;'>Neutral Words</h3>",unsafe_allow_html=True)
@@ -612,7 +612,7 @@ if uploaded_file is not None:
         with col3:
             try:
                 # Data frame of most common negative words.
-                most_common_df = helper2.most_common_words(selected_user, data,-1)
+                most_common_df = helper.most_common_words(selected_user, data,-1)
                 
                 # heading
                 st.markdown("<h3 style='text-align: center; color: black;'>Negative Words</h3>",unsafe_allow_html=True)
@@ -631,7 +631,7 @@ if uploaded_file is not None:
         if selected_user == 'Overall': 
                     bytes_data = uploaded_file.getvalue()
                     data = bytes_data.decode("utf-8")
-                    merged_df,avg_compound, avg_positive, avg_neutral, avg_negative = preprocessor2.preprocess2(data)
+                    merged_df,avg_compound, avg_positive, avg_neutral, avg_negative = preprocessor.preprocess2(data)
                     st. markdown("<h1 style='text-align: center; color: grey;'>Chat Sentiments</h2>", unsafe_allow_html=True)
                     st.dataframe(merged_df)
                     
@@ -643,7 +643,7 @@ if uploaded_file is not None:
 
 
 # Get the average positive, neutral, negative, and compound scores from the preprocessing function
-        _, avg_compound, avg_positive, avg_neutral, avg_negative = preprocessor2.preprocess2(data)
+        _, avg_compound, avg_positive, avg_neutral, avg_negative = preprocessor.preprocess2(data)
 
 # Create labels and values for the pie chart
         labels = ['Positive', 'Neutral', 'Negative', 'Compound']
