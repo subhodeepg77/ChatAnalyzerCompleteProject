@@ -22,6 +22,19 @@ stop_words_file = 'stop_hinglish.txt'
 nltk.download('stopwords')
 import nltk
 nltk.download('vader_lexicon')
+
+import subprocess
+
+# Check if the 'wordcloud' package is installed
+try:
+    import wordcloud
+except ImportError:
+    # If 'wordcloud' package is not installed, install it
+    subprocess.check_call(["pip", "install", "wordcloud"])
+
+# Now you can import the 'wordcloud' package
+import wordcloud
+
 #Displaying the entire data frame
 
 # App title
