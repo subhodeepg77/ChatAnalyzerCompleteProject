@@ -23,6 +23,18 @@ nltk.download('vader_lexicon')
 # Object
 extract = URLExtract()
 
+import subprocess
+
+# Check if the 'wordcloud' package is installed
+try:
+    import wordcloud
+except ImportError:
+    # If 'wordcloud' package is not installed, install it
+    subprocess.check_call(["pip", "install", "wordcloud"])
+
+# Now you can import the 'wordcloud' package
+import wordcloud
+
 # -1 => Negative
 # 0 => Neutral
 # 1 => Positive
